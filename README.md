@@ -1,0 +1,2 @@
+# facial_recognition_app
+Real-Time_Face_Detection_using_MediaPipe_with_Tkinter

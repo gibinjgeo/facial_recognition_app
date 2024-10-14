@@ -68,11 +68,6 @@ class FaceDetectionApp:
         else:
             messagebox.showwarning("Face Detection", "Save operation was canceled.")
 
-    # def save_image_with_landmarks(self, frame):
-    #     save_path = "face_with_landmarks.jpg"
-    #     cv2.imwrite(save_path, frame)
-    #     messagebox.showinfo("Face Detection", f"Image saved successfully at {os.path.abspath(save_path)}")
-
 
 if __name__ == "__main__":
     root = tk.Tk()

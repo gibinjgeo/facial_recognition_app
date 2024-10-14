@@ -1,6 +1,6 @@
 import cv2
 import tkinter as tk
-from tkinter import Label, Button, Frame, messagebox
+from tkinter import Label, Button, Frame, messagebox, filedialog
 from PIL import Image, ImageTk
 import mediapipe as mp
 import os
@@ -57,12 +57,21 @@ class FaceDetectionApp:
                     messagebox.showinfo("Face Detection", "Face not detected")
 
     def save_image_with_landmarks(self, frame):
-        bgr_frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
+        save_path = filedialog.asksaveasfilename(defaultextension=".jpg",
+                                                 filetypes=[("JPEG files", "*.jpg"), ("PNG files", "*.png"),
+                                                            ("All files", "*.*")],
+                                                 title="Save Image As")
+        if save_path:  # If a valid file name was provided
+            cv2.imwrite(save_path, frame)
 
-        save_path = "face_with_landmarks.jpg"
-        cv2.imwrite(save_path, bgr_frame)
+            messagebox.showinfo("Face Detection", f"Image saved successfully at {os.path.abspath(save_path)}")
+        else:
+            messagebox.showwarning("Face Detection", "Save operation was canceled.")
 
-        messagebox.showinfo("Face Detection", f"Image saved successfully at {os.path.abspath(save_path)}")
+    # def save_image_with_landmarks(self, frame):
+    #     save_path = "face_with_landmarks.jpg"
+    #     cv2.imwrite(save_path, frame)
+    #     messagebox.showinfo("Face Detection", f"Image saved successfully at {os.path.abspath(save_path)}")
 
 
 if __name__ == "__main__":
